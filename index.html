@@ -42,7 +42,7 @@
             <!-- Any section element inside of this container is displayed as a slide -->
             <div class="slides">
                 <section>
-                    <h1>C# 6.0 Changes and Additions</h1>
+                    <h1>C# 6.0 Feature Additions</h1>
                 </section>
 
                 <section>
@@ -129,7 +129,7 @@ public bool IsGreat { get; } = true;
             <section>
                 <section>
                     <h2>String Interpolation</h2>
-                    <h3>Before</h3>
+                    <h3>Before C# 6.0</h3>
                     <pre><code class="hljs">
 var query = String.Format("{{ UserId: ObjectId(\"{0}\") , Name: \"{1}\" }}", UserId, Name);
 var cursor = await locationCollection.FindAsync(query);
@@ -154,7 +154,143 @@ Console.WriteLine($"Getting from {uri.AbsoluteUri} took {req.GetElapsed()}s");
                 </section>
             </section>
 
+            <section>
+            	<section>
+            		<h2>Static Using Statements</h2>
+                    <h3>Before C# 6.0</h3>
+                    <pre><code class="hljs">
+using System.Console;
+
+namespace MyConsoleApp
+{
+    class Program
+    {
+        static void Main(string [] args)
+        {
+            Console.WriteLine("Starting process");
+        }
+    }
+}
+                    </code></pre>
+            	</section>
+
+            	<section>
+            		<h2>Static Using Statements</h2>
+                    <h3>C# 6.0</h3>
+                    <pre><code class="hljs">
+using static System.Console;
+
+namespace MyConsoleApp
+{
+    class Program
+    {
+        static void Main(string [] args)
+        {
+            WriteLine("Starting process");
+        }
+    }
+}
+                    </code></pre>
+            	</section>
+
+            	<section>
+            		<h2>Static Using Statements</h2>
+                    <h3>Before C# 6.0</h3>
+                    <pre><code class="hljs">
+using ReallyLongNamespaceThatMakesItLessReadable;
+
+namespace MyConsoleApp
+{
+    class Program
+    {
+        static void Main(string [] args)
+        {
+            ReallyLongNamespaceThatMakesItLessReadable.Log("Failed writing to file!");
+        }
+    }
+}
+                    </code></pre>
+            	</section>
+
+            	<section>
+            		<h2>Static Using Statements</h2>
+                    <h3>C# 6.0</h3>
+                    <pre><code class="hljs">
+using static ReallyLongNamespaceThatMakesItLessReadable;
+
+namespace MyConsoleApp
+{
+    class Program
+    {
+        static void Main(string [] args)
+        {
+            Log("Failed writing to file!");
+        }
+    }
+}
+                    </code></pre>
+            	</section>
+            </section>
+
+            <section>
+                <section>
+                    <h2>Exception filters</h2>
+                    <h3>Before C# 6.0</h3>
+                    <pre><code class="hljs">
+try 
+{
+    // code
+} 
+catch (HttpException ex) 
+{
+    if (ex.GetHttpCode() == 404)
+    {
+        Exec404Handler();
+    }
+    else if (ex.GetHttpCode() == 500)
+    {
+        Exec500Handler();
+    }
+}
+                    </code></pre>
+                </section>
                 
+                <section>
+                    <h2>Exception filters</h2>
+                    <h3>C# 6.0</h3>
+                    <pre><code class="hljs">
+try 
+{
+    // code
+} 
+catch (HttpException ex) where (ex.GetHttpCode() == 404)
+{
+    Exec404Handler();
+}
+catch (HttpException ex) where (ex.GetHttpCode() == 500)
+{
+    Exec500Handler();
+}
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>Exception filters</h2>
+                    <h3>C# 6.0</h3>
+                    <pre><code class="hljs">
+try 
+{
+    // code
+} 
+catch (HttpException ex) where (Log(ex))
+{
+    // doesn't execute if Log returns false
+}
+                    </code></pre>
+                </section>
+
+            </section>
+
             <section>
                 <section>
                     <h2>Lambda Expressions in Getter Properties</h2>
@@ -223,15 +359,27 @@ public string FormatAddress(string address, string city, string state)
                 <section>
                     <h2>To Reiterate</h2>
                     <p>
-                        <strong>The use of C#6 requires Visual Studio 2015! If you are sharing code with other people who are not using Visual Studio 2015, the code will not compile!</strong>
+                        <strong>The use of C#6 requires Visual Studio 2015! If you are sharing code with other people who are not using Visual Studio 2015, they won't be able to compile the code.</strong>
                     </p>
                 </section>
 
+                <section>
+                    <h2>.NET 5, Roslyn</h2>
+                    <p>
+                        In addition to open sourcing a lot of their tech infrastructure, Microsoft has improved their documentation, including .NET and Roslyn.
+                    </p>
+                    <ul>
+                        <li>.NET 5 Release Candidate was just released</li>
+                        <li><a href="http://docs.asp.net/en/latest/conceptual-overview/aspnet.html" target="_blank">http://docs.asp.net/en/latest/conceptual-overview/aspnet.html</a></li>
+                        <li><a href="http://dotnet.github.io/getting-started/" target="_blank">http://dotnet.github.io/getting-started/</a></li>
+                        <li><span style="font-weight: 400">For more on C# 6.0:</span> <a href="https://github.com/dotnet/roslyn/wiki/New-Language-Features-in-C%23-6">https://github.com/dotnet/roslyn/wiki/New-Language-Features-in-C%23-6</a></li>
+                        <li><a href="https://github.com/dotnet/roslyn/wiki/Roslyn%20Overview" target="_blank">https://github.com/dotnet/roslyn/wiki/Roslyn%20Overview</a>
+                    </ul>
+                </section>
 
                 <section>
                     <h1 style="color: #283593;">Thank you</h1>
                 </section>
-
             </div>
 
         </div>
@@ -244,6 +392,7 @@ public string FormatAddress(string address, string city, string state)
             // Full list of configuration options available at:
             // https://github.com/hakimel/reveal.js#configuration
             Reveal.initialize({
+                width: 1360,
                 controls: true,
                 progress: true,
                 history: true,
