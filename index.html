@@ -171,6 +171,27 @@ public UserKey Key => new UserKey(UserId, GroupName); // no get!
 				</section>
 
 				<section>
+					<h2>Lambda Expressions in Methods</h2>
+					<h3>C# 3.0</h3>
+					<pre><code class="hljs">
+public string FormatAddress(string address, string city, string state)
+{
+	return address + " " + city + ", " + state;
+}
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Lambda Expressions in Methods</h2>
+					<h3>C# 6.0</h3>
+					<pre><code class="hljs">
+public string FormatAddress(string address, string city, string state) 
+	=> address + " " + city + ", " + state;
+					</code></pre>
+				</section>
+
+
+				<section>
 					<h1 style="color: #283593;">Thank you</h1>
 				</section>
 
