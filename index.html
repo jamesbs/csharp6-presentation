@@ -234,6 +234,33 @@ namespace MyConsoleApp
 
             <section>
                 <section>
+                    <h2>Null Conditional Operators</h2>
+                    <h3>Before C# 6.0</h3>
+                    <pre><code class="hljs">
+int count = (list == null) ? 0 : list.Count();
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>Null Conditional Operators</h2>
+                    <h3>C# 6.0</h3>
+                    <pre><code class="hljs">
+int count = list?.Count() ?? 0;
+                    </code></pre>
+                </section>
+
+
+                <section>
+                    <h2>Null Conditional Operators</h2>
+                    <h3>C# 6.0</h3>
+                    <pre><code class="hljs">
+Address address = locations?.FirstOrDefault(loc => loc.UserId == UserId)?.Address;
+                    </code></pre>
+                </section>
+            </section>
+
+            <section>
+                <section>
                     <h2>Exception filters</h2>
                     <h3>Before C# 6.0</h3>
                     <pre><code class="hljs">
@@ -372,7 +399,7 @@ public string FormatAddress(string address, string city, string state)
                         <li>.NET 5 Release Candidate was just released</li>
                         <li><a href="http://docs.asp.net/en/latest/conceptual-overview/aspnet.html" target="_blank">http://docs.asp.net/en/latest/conceptual-overview/aspnet.html</a></li>
                         <li><a href="http://dotnet.github.io/getting-started/" target="_blank">http://dotnet.github.io/getting-started/</a></li>
-                        <li><span style="font-weight: 400">For more on C# 6.0:</span> <a href="https://github.com/dotnet/roslyn/wiki/New-Language-Features-in-C%23-6">https://github.com/dotnet/roslyn/wiki/New-Language-Features-in-C%23-6</a></li>
+                        <li><span style="font-weight: 400">For more on C# 6.0:</span> <a href="https://github.com/dotnet/roslyn/wiki/New-Language-Features-in-C%23-6" target="_blank">https://github.com/dotnet/roslyn/wiki/New-Language-Features-in-C%23-6</a></li>
                         <li><a href="https://github.com/dotnet/roslyn/wiki/Roslyn%20Overview" target="_blank">https://github.com/dotnet/roslyn/wiki/Roslyn%20Overview</a>
                     </ul>
                 </section>
