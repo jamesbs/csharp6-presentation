@@ -1,0 +1,6 @@
+slide 1:
+	-> add left to right graph with version change and date for each node
+
+auto prop initializers
+	-> first added in c# 3.0
+	-> can add initializer, previously only available for fields

@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>C# 6 Features</title>
+		<title>C# 6.0 Features and Additions</title>
 
 		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
 		<meta name="author" content="Hakim El Hattab">
@@ -42,39 +42,136 @@
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 				<section>
-					<h1>C# 6 Changes and Additions</h1>
+					<h1>C# 6.0 Changes and Additions</h1>
 				</section>
 
 				<section>
 					<h2>Background</h2>
 					<ul>
-						<li>C# 6 was made available by Microsoft along with the Roslyn compiler as a part of Visual Studio 2015 in July 2015.</li>
+						<li>C# 6.0 was made available by Microsoft along with the Roslyn compiler as a part of Visual Studio 2015 in July 2015.</li>
 						<li>Major version change has been released every 2 to 3 years. C# 5 was released mid 2012</li>
 					</ul>
 				</section>
 
 				<section>
-					<h2>Slides</h2>
-					<p>
-						Not a coder? Not a problem. There's a fully-featured visual editor for authoring these, try it out at <a href="http://slides.com" target="_blank">http://slides.com</a>.
-					</p>
+					<h2>Auto-Implemented Property Initializers</h2>
+					<h3>C# 2.0</h3>
+					<pre><code class="hljs">
+private string _name;
+public string Name 
+{ 
+	get { return _name; } 
+	set { _name = value; }
+}
+
+private bool _isGreat;
+public bool IsGreat 
+{ 
+	get { return _isGreat; } 
+	set { _isGreat = value; } 
+}
+					</code></pre>
 				</section>
 
 				<section>
-					<h2>Point of View</h2>
-					<p>
-						Press <strong>ESC</strong> to enter the slide overview.
-					</p>
-					<p>
-						Hold down alt and click on any element to zoom in on it using <a href="http://lab.hakim.se/zoom-js">zoom.js</a>. Alt + click anywhere to zoom back out.
-					</p>
+					<h2>Auto-Implemented Property Initializers</h2>
+					<h3>C# 3.0</h3>
+					<pre><code class="hljs">
+public string Name { get; set; }
+public bool IsGreat { get; set; }
+					</code></pre>
+				</section>
+
+
+
+				<section>
+					<h2>Auto Property Initializers</h2>
+					<h3>C# 3.0</h3>
+					<pre><code class="hljs">
+
+private string _name = "C# 6.0";
+public string Name 
+{ 
+	get { return _name; }
+	set { _name = value; }
+}
+
+private string _isGreat = true;
+public bool IsGreat 
+{ 
+	get { return _isGreat; }
+	set { _isGreat = value; } 
+}
+					</code></pre>
 				</section>
 
 				<section>
-					<h2>Touch Optimized</h2>
-					<p>
-						Presentations look great on touch devices, like mobile phones and tablets. Simply swipe through your slides.
-					</p>
+					<h2>Auto Property Initializers</h2>
+					<h3>C# 6.0</h3>
+					<pre><code class="hljs">
+public string Name { get; set; } = "C# 6.0";
+public bool IsGreat { get; set; } = true;
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Auto Property Initializers</h2>
+					<h3>C# 6.0</h3>
+					<pre><code class="hljs">
+public string Name { get; } = "C# 6.0";
+public bool IsGreat { get; } = true;
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Lambda Expressions in Getter Properties</h2>
+					<h3>C# 3.0</h3>
+					<pre><code class="hljs">
+var cities = locations.Select(location => location.City);
+					</code></pre>
+				</section>
+
+
+				<section>
+					<h2>Lambda Expressions in Getter Properties</h2>
+					<h3>C# 3.0</h3>
+					<pre><code class="hljs">
+private Guid _userId = Guid.NewGuid();
+public Guid UserId  { get { return _userId; } }
+
+public string GroupName { get; set; }
+
+public UserKey Key 
+{ 
+	get { 
+		return new UserKey(UserId, GroupName) 
+	} 
+}
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Lambda Expressions in Getter Properties</h2>
+					<h3>C# 6.0</h3>
+					<pre><code class="hljs">
+public Guid UserId { get; } = Guid.NewGuid();
+public string GroupName { get; set; }
+public UserKey Key => new UserKey(UserId, GroupName); // no get!
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Lambda Expressions in Getter Properties</h2>
+					<h3>C# 6.0</h3>
+					<pre><code class="hljs">
+public Guid UserId { get; } = Guid.NewGuid();
+public string GroupName { get; set; }
+public UserKey Key => new UserKey(UserId, GroupName); // no get!
+					</code></pre>
+				</section>
+
+				<section>
+					<h1 style="color: #283593;">Thank you</h1>
 				</section>
 
 				<section data-markdown>
